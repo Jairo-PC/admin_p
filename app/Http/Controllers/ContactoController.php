@@ -48,7 +48,7 @@ class ContactoController extends Controller
         $contacto = Contacto::create($request->all());
 
         return redirect()->route('contactos.index')
-            ->with('success', 'Contacto created successfully.');
+            ->with('success', 'Registro exitoso.');
     }
 
     /**
@@ -91,7 +91,7 @@ class ContactoController extends Controller
         $contacto->update($request->all());
 
         return redirect()->route('contactos.index')
-            ->with('success', 'Contacto updated successfully');
+            ->with('success', 'Registro actualizado exitosamente');
     }
 
     /**
@@ -104,6 +104,6 @@ class ContactoController extends Controller
         $contacto = Contacto::find($id)->delete();
 
         return redirect()->route('contactos.index')
-            ->with('success', 'Contacto deleted successfully');
+            ->with('success', 'Registro eliminado exitosamente');
     }
 }

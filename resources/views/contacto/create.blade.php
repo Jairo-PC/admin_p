@@ -13,7 +13,7 @@
 
                 <div class="card card-default">
                     <div class="card-header">
-                        <span class="card-title">Create Contacto</span>
+                        <span class="card-title">Crear nuevo registro</span>
                     </div>
                     <div class="card-body">
                         <form method="POST" action="{{ route('contactos.store') }}"  role="form" enctype="multipart/form-data">
