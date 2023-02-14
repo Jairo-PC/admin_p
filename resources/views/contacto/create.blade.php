@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('template_title')
-    Create Contacto
+    Crear registro
 @endsection
 
 @section('content')
@@ -22,6 +22,7 @@
                             @include('contacto.form')
 
                         </form>
+                        
                     </div>
                 </div>
             </div>

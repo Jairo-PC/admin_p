@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Contacto;
+use App\Http\Controllers\storage;
 use Illuminate\Http\Request;
 
 /**
@@ -11,11 +12,7 @@ use Illuminate\Http\Request;
  */
 class ContactoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     public function index()
     {
         $contactos = Contacto::paginate();
@@ -24,39 +21,27 @@ class ContactoController extends Controller
             ->with('i', (request()->input('page', 1) - 1) * $contactos->perPage());
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     public function create()
     {
         $contacto = new Contacto();
         return view('contacto.create', compact('contacto'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
+    
     public function store(Request $request)
     {
         request()->validate(Contacto::$rules);
 
         $contacto = Contacto::create($request->all());
 
+        $contacto->imagen = $request->file(key: "imagen")->store(path:'portadas',options:'public');
+
         return redirect()->route('contactos.index')
             ->with('success', 'Registro exitoso.');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function show($id)
     {
         $contacto = Contacto::find($id);
@@ -64,12 +49,7 @@ class ContactoController extends Controller
         return view('contacto.show', compact('contacto'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function edit($id)
     {
         $contacto = Contacto::find($id);
@@ -77,28 +57,23 @@ class ContactoController extends Controller
         return view('contacto.edit', compact('contacto'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @param  Contacto $contacto
-     * @return \Illuminate\Http\Response
-     */
+    
     public function update(Request $request, Contacto $contacto)
     {
         request()->validate(Contacto::$rules);
 
         $contacto->update($request->all());
 
+        if($request->hasFile('imagen')) {
+            
+            $contacto->imagen = $request->file(key: "imagen")->store(path:'portadas',options:'public');
+        }
         return redirect()->route('contactos.index')
             ->with('success', 'Registro actualizado exitosamente');
+        
     }
 
-    /**
-     * @param int $id
-     * @return \Illuminate\Http\RedirectResponse
-     * @throws \Exception
-     */
+    
     public function destroy($id)
     {
         $contacto = Contacto::find($id)->delete();

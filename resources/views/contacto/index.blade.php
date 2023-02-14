@@ -36,10 +36,10 @@
                                     <tr>
                                         <th>Id</th>
                                         
-										<th>Nombre</th>
-										<th>Direccion</th>
-										<th>Telefono</th>
-										<th>Correo</th>
+										<th>Titulo</th>
+										<th>Descripcion</th>
+										<th>Url</th>
+										<th>Imagen</th>
 
                                         <th></th>
                                     </tr>
@@ -49,10 +49,14 @@
                                         <tr>
                                             <td>{{ ++$i }}</td>
                                             
-											<td>{{ $contacto->nombre }}</td>
-											<td>{{ $contacto->direccion }}</td>
-											<td>{{ $contacto->telefono }}</td>
-											<td>{{ $contacto->correo }}</td>
+											<td>{{ $contacto->titulo }}</td>
+											<td>{!! $contacto->descripcion !!}</td>
+											<td>
+                                                <a href="{{ $contacto->url }}" target="_blank">Ver Url</a>
+                                            </td>
+											<td>
+                                                <img src="{{asset('storage.').'/'.$contacto->imagen }}" width="100px" alt="1">
+                                            </td>
 
                                             <td>
                                                 <form action="{{ route('contactos.destroy',$contacto->id) }}" method="POST">

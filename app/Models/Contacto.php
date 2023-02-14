@@ -8,10 +8,10 @@ use Illuminate\Database\Eloquent\Model;
  * Class Contacto
  *
  * @property $id
- * @property $nombre
- * @property $direccion
- * @property $telefono
- * @property $correo
+ * @property $titulo
+ * @property $descripcion
+ * @property $url
+ * @property $imagen
  * @property $created_at
  * @property $updated_at
  *
@@ -22,10 +22,10 @@ class Contacto extends Model
 {
     
     static $rules = [
-		'nombre' => 'required',
-		'direccion' => 'required',
-		'telefono' => 'required',
-		'correo' => 'required',
+		'titulo' => 'required',
+		'descripcion' => 'required',
+		'url' => 'required',
+		'imagen' => 'required',
     ];
 
     protected $perPage = 20;
@@ -35,7 +35,7 @@ class Contacto extends Model
      *
      * @var array
      */
-    protected $fillable = ['nombre','direccion','telefono','correo'];
+    protected $fillable = ['titulo','descripcion','url','imagen'];
 
 
 
