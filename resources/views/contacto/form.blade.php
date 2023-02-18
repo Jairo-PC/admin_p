@@ -15,7 +15,7 @@
             
                 
                     <label for="">Descripcion</label>
-                    <textarea name="descripcion" id="" cols="30" rows="5" class="form-control" required>{{old('descripcion')}}</textarea>
+                    <textarea name="descripcion" id="" cols="30" rows="5" class="form-control" required>{{$contacto->descripcion}}</textarea>
                     @error('descripcion')
                         <small style="...">{{$message}}</small>
                     @enderror
